@@ -1,6 +1,6 @@
 # Electronic Invoice module for OXID eShop
 
-[![Development](https://github.com/Fresh-Advance/Electronic-Invoice/actions/workflows/trigger.yml/badge.svg?branch=b-7.1.x)](https://github.com/Fresh-Advance/Electronic-Invoice/actions/workflows/trigger.yml)
+[![Development](https://github.com/Fresh-Advance/Electronic-Invoice/actions/workflows/trigger.yaml/badge.svg?branch=b-7.1.x)](https://github.com/Fresh-Advance/Electronic-Invoice/actions/workflows/trigger.yaml)
 [![Latest Version](https://img.shields.io/packagist/v/Fresh-Advance/Electronic-Invoice?logo=composer&label=latest&include_prereleases&color=orange)](https://packagist.org/packages/Fresh-Advance/Electronic-Invoice)
 [![PHP Version](https://img.shields.io/packagist/php-v/Fresh-Advance/Electronic-Invoice)](https://github.com/Fresh-Advance/Electronic-Invoice)
 
