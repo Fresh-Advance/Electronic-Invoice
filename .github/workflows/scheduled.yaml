@@ -4,14 +4,14 @@ name: Scheduled weekly run
 on:
   schedule:
     # This cron job runs at 1:16 AM every 7th day of the month, every month of the year.
-    - cron: '16 1 */7 * *'
+    - cron: '25 1 */7 * *'
 
 jobs:
-  module_template_71x_nightly:
+  71x_nightly:
     if: always()
     uses: oxid-eSales/github-actions/.github/workflows/universal_workflow_light.yaml@v4
     with:
-      testplan: '~/defaults/7.3.x.yaml,~/defaults/scheduled.yaml,~/module-template.yaml'
+      testplan: '~/defaults/7.1.x.yaml,~/defaults/scheduled.yaml,~/module-template.yaml'
       runs_on: '"ubuntu-latest"'
       defaults: 'v4'
       plan_folder: '.github/oxid-esales'
