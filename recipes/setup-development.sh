@@ -57,7 +57,7 @@ docker compose exec -T php vendor/bin/oe-console oe:module:install ./
 docker compose exec -T php vendor/bin/oe-eshop-doctrine_migration migrations:migrate
 docker compose exec -T php vendor/bin/oe-eshop-db_views_generate
 
-docker compose exec -T php vendor/bin/oe-console oe:module:activate oe_moduletemplate
+docker compose exec -T php vendor/bin/oe-console oe:module:activate fa_electronic_invoice
 docker compose exec -T php vendor/bin/oe-console oe:theme:activate apex
 
 $SCRIPT_PATH/parts/shared/create_admin.sh

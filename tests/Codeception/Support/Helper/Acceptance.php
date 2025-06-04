@@ -1,13 +1,13 @@
 <?php
 
 /**
- * Copyright © OXID eSales AG. All rights reserved.
+ * Copyright © MB Arbatos Klubas. All rights reserved.
  * See LICENSE file for license details.
  */
 
 declare(strict_types=1);
 
-namespace OxidEsales\ModuleTemplate\Tests\Codeception\Support\Helper;
+namespace FreshAdvance\ElectronicInvoice\Tests\Codeception\Support\Helper;
 
 use OxidEsales\Facts\Facts;
 
@@ -18,6 +18,6 @@ final class Acceptance extends \Codeception\Module
 {
     public function _beforeSuite($settings = []): void
     {
-        exec((new Facts())->getShopRootPath() . '/bin/oe-console oe:module:activate oe_moduletemplate');
+        exec((new Facts())->getShopRootPath() . '/bin/oe-console oe:module:activate fa_electronic_invoice');
     }
 }

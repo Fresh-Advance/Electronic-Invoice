@@ -1,20 +1,20 @@
 <?php
 
 /**
- * Copyright © OXID eSales AG. All rights reserved.
+ * Copyright © MB Arbatos Klubas. All rights reserved.
  * See LICENSE file for license details.
  */
 
 declare(strict_types=1);
 
-namespace OxidEsales\ModuleTemplate\Tests\Codeception\Acceptance;
+namespace FreshAdvance\ElectronicInvoice\Tests\Codeception\Acceptance;
 
 use OxidEsales\Codeception\Module\Translation\Translator;
-use OxidEsales\ModuleTemplate\Tests\Codeception\Support\AcceptanceTester;
+use FreshAdvance\ElectronicInvoice\Tests\Codeception\Support\AcceptanceTester;
 
 /**
- * @group oe_moduletemplate
- * @group oe_moduletemplate_startpage
+ * @group fa_electronic_invoice
+ * @group fa_electronic_invoice_startpage
  */
 final class ExampleCest
 {

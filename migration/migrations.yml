@@ -1,4 +1,4 @@
 table_storage:
-  table_name: oxmigrations_oe_moduletemplate
+  table_name: oxmigrations_fa_electronic_invoice
 migrations_paths:
-  'OxidEsales\ModuleTemplate\Migrations': data
+  'FreshAdvance\ElectronicInvoice\Migrations': data

@@ -1,5 +1,5 @@
 {
-    "name": "oxid-esales/module-template",
+    "name": "fresh-advance/electronic-invoice",
     "description": "Module Template – Clean Skeleton for OXID Modules",
     "type": "oxideshop-module",
     "keywords": [
@@ -37,12 +37,12 @@
     },
     "autoload": {
         "psr-4": {
-            "OxidEsales\\ModuleTemplate\\": "src/"
+            "FreshAdvance\\ElectronicInvoice\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "OxidEsales\\ModuleTemplate\\Tests\\": "tests/",
+            "FreshAdvance\\ElectronicInvoice\\Tests\\": "tests/",
             "OxidEsales\\EshopCommunity\\Tests\\": "./vendor/oxid-esales/oxideshop-ce/tests"
         }
     },
@@ -73,7 +73,7 @@
 
         "tests-codeception": [
             "Composer\\Config::disableProcessTimeout",
-            "THEME_ID=apex MODULE_IDS=oe_moduletemplate SHOP_ROOT_PATH=/var/www vendor/bin/codecept run Acceptance -c tests/codeception.yml --no-redirect"
+            "THEME_ID=apex MODULE_IDS=fa_electronic_invoice SHOP_ROOT_PATH=/var/www vendor/bin/codecept run Acceptance -c tests/codeception.yml --no-redirect"
         ],
 
         "tests-all": [
