@@ -15,10 +15,10 @@ $sMetadataVersion = '2.1';
  */
 $aModule = [
     'id'          => 'fa_electronic_invoice',
-    'title'       => 'TODO: CHANGE MY TITLE',
-    'description' => 'Module Template – Clean Skeleton for OXID Modules',
+    'title'       => 'Electronic Invoice',
+    'description' => 'Extension for PDF Invoice module to support electronic invoices.',
     'thumbnail'   => 'pictures/logo.png',
-    'version'     => '4.0.0',
+    'version'     => '1.0.0',
     'author'      => 'MB Arbatos Klubas',
     'url'         => '',
     'email'       => '',
