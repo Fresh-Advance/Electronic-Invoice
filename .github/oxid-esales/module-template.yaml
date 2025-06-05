@@ -54,7 +54,7 @@ sonarcloud:
     testplan: '["-"]'
   strip_path: '/var/www/'
   project_key: 'Fresh-Advance_Electronic-Invoice'
-  project_name: 'Electronic Invoice'
+  project_name: 'Electronic-Invoice'
   organization: 'fresh-advance'
   parameters: |
     -Dsonar.language=php \

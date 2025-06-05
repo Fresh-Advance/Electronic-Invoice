@@ -76,7 +76,7 @@
 
         "tests-codeception": [
             "Composer\\Config::disableProcessTimeout",
-            "THEME_ID=apex MODULE_IDS=fa_electronic_invoice SHOP_ROOT_PATH=/var/www vendor/bin/codecept run Acceptance -c tests/codeception.yml --no-redirect"
+            "THEME_ID=twig MODULE_IDS=fa_invoice,fa_electronic_invoice SHOP_ROOT_PATH=/var/www vendor/bin/codecept run Acceptance -c tests/codeception.yml --no-redirect"
         ],
 
         "tests-all": [
