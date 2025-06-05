@@ -1,0 +1,10 @@
+services:
+  _defaults:
+    public: false
+    autowire: true
+
+  FreshAdvance\ElectronicInvoice\Geo\Factory\CountryModelFactoryInterface:
+    class: FreshAdvance\ElectronicInvoice\Geo\Factory\CountryModelFactory
+
+  FreshAdvance\ElectronicInvoice\Geo\Service\GeoServiceInterface:
+    class: FreshAdvance\ElectronicInvoice\Geo\Service\GeoService

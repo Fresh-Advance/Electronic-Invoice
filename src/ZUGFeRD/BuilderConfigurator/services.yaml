@@ -1,0 +1,26 @@
+services:
+  _defaults:
+    public: false
+    autowire: true
+
+  FreshAdvance\ElectronicInvoice\ZUGFeRD\BuilderConfigurator\BuilderConfiguratorInterface:
+    class: FreshAdvance\ElectronicInvoice\ZUGFeRD\BuilderConfigurator\BuilderConfiguratorComposite
+    arguments:
+      - '@FreshAdvance\ElectronicInvoice\ZUGFeRD\BuilderConfigurator\BuilderDocumentInformationConfigurator'
+      - '@FreshAdvance\ElectronicInvoice\ZUGFeRD\BuilderConfigurator\BuilderSellerConfigurator'
+      - '@FreshAdvance\ElectronicInvoice\ZUGFeRD\BuilderConfigurator\BuilderBuyerConfigurator'
+      - '@FreshAdvance\ElectronicInvoice\ZUGFeRD\BuilderConfigurator\BuilderItemConfiguratorIterator'
+      - '@FreshAdvance\ElectronicInvoice\ZUGFeRD\BuilderConfigurator\BuilderVatConfigurator'
+      - '@FreshAdvance\ElectronicInvoice\ZUGFeRD\BuilderConfigurator\BuilderTotalsConfigurator'
+      - '@FreshAdvance\ElectronicInvoice\ZUGFeRD\BuilderConfigurator\BuilderPriceAdjustementsConfigurator'
+
+  FreshAdvance\ElectronicInvoice\ZUGFeRD\BuilderConfigurator\BuilderDocumentInformationConfigurator: ~
+  FreshAdvance\ElectronicInvoice\ZUGFeRD\BuilderConfigurator\BuilderSellerConfigurator: ~
+  FreshAdvance\ElectronicInvoice\ZUGFeRD\BuilderConfigurator\BuilderBuyerConfigurator: ~
+  FreshAdvance\ElectronicInvoice\ZUGFeRD\BuilderConfigurator\BuilderItemConfiguratorIterator: ~
+  FreshAdvance\ElectronicInvoice\ZUGFeRD\BuilderConfigurator\BuilderVatConfigurator: ~
+  FreshAdvance\ElectronicInvoice\ZUGFeRD\BuilderConfigurator\BuilderTotalsConfigurator: ~
+  FreshAdvance\ElectronicInvoice\ZUGFeRD\BuilderConfigurator\BuilderPriceAdjustementsConfigurator: ~
+
+  FreshAdvance\ElectronicInvoice\ZUGFeRD\BuilderConfigurator\BuilderItemConfiguratorInterface:
+    class: FreshAdvance\ElectronicInvoice\ZUGFeRD\BuilderConfigurator\BuilderItemConfigurator
