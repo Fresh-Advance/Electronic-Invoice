@@ -14,7 +14,8 @@
         <properties>
             <property name="exceptions">
                 <value>
-                    \Symfony\Component\Filesystem\Path
+                    \Symfony\Component\Filesystem\Path,
+                    \horstoeko\zugferd\ZugferdDocumentBuilder
                 </value>
             </property>
         </properties>
@@ -22,6 +23,10 @@
 
     <rule ref="rulesets/codesize.xml" />
     <rule ref="rulesets/design.xml" />
-    <rule ref="rulesets/naming.xml" />
+
+    <rule ref="rulesets/naming.xml">
+        <exclude name="LongVariable" />
+    </rule>
+
     <rule ref="rulesets/unusedcode.xml" />
 </ruleset>

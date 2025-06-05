@@ -81,7 +81,7 @@ class BuilderVatConfigurator implements BuilderConfiguratorInterface
     }
 
     /**
-     * @param $rates array<string, array{net: float, vat: float}>
+     * @param array<string, array{net: float, vat: float}> $rates
      *
      * @return array<string, array{net: float, vat: float}>
      */
