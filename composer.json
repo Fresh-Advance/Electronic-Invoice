@@ -1,18 +1,22 @@
 {
     "name": "fresh-advance/electronic-invoice",
-    "description": "Module Template – Clean Skeleton for OXID Modules",
+    "description": "Extension for PDF Invoice module to support electronic invoices.",
     "type": "oxideshop-module",
     "keywords": [
         "oxid",
         "modules",
-        "eShop"
+        "invoice",
+        "pdf",
+        "payments",
+        "electronic-invoice",
+        "PDF Invoice"
     ],
     "license": [
         "proprietary"
     ],
     "require": {
         "php": "^8.2",
-        "symfony/filesystem": "^6.4"
+        "fresh-advance/invoice": "dev-b-7.1.x-einvoice"
     },
     "minimum-stability": "dev",
     "prefer-stable": true,

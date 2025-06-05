@@ -13,16 +13,16 @@ install:
           "require": {
               "oxid-esales/oxideshop-ce": "{{ .Data.global.composer.dev_ref }}",
               "oxid-esales/twig-admin-theme": "{{ .Data.global.composer.dev_ref }}",
-              "oxid-esales/apex-theme": "{{ .Data.global.composer.dev_ref }}",
-              "oxid-esales/twig-component": "{{ .Data.global.composer.dev_ref }}"
+              "oxid-esales/twig-theme": "{{ .Data.global.composer.dev_ref }}"
           }
       }
   custom_script_container: |
     vendor/bin/oe-console oe:database:reset --db-host=mysql --db-port=3306 --db-name=example --db-user=root --db-password=root --force
     vendor/bin/oe-console oe:module:install ./
     vendor/bin/oe-eshop-doctrine_migration migrations:migrate
+    vendor/bin/oe-console oe:module:activate fa_invoice
     vendor/bin/oe-console oe:module:activate fa_electronic_invoice
-    vendor/bin/oe-console oe:theme:activate apex
+    vendor/bin/oe-console oe:theme:activate twig
 
 install_shop_with_modules:
   composer:
@@ -54,7 +54,7 @@ sonarcloud:
     testplan: '["-"]'
   strip_path: '/var/www/'
   project_key: 'Fresh-Advance_Electronic-Invoice'
-  project_name: 'fresh-advance/electronic-invoice'
+  project_name: 'Electronic Invoice'
   organization: 'fresh-advance'
   parameters: |
     -Dsonar.language=php \

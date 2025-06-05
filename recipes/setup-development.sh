@@ -37,11 +37,9 @@ docker compose up --build -d php
 
 docker compose exec -T php git config --global --add safe.directory /var/www
 
-$SCRIPT_PATH/parts/shared/require_shop_edition_packages.sh -e"${edition}" -v"dev-b-7.3.x"
-$SCRIPT_PATH/parts/shared/require_twig_components.sh -e"${edition}" -b"b-7.3.x"
-$SCRIPT_PATH/parts/shared/require.sh -n"oxid-esales/developer-tools" -v"dev-b-7.3.x"
-$SCRIPT_PATH/parts/shared/require.sh -n"oxid-esales/oxideshop-doctrine-migration-wrapper" -v"dev-b-7.3.x"
-$SCRIPT_PATH/parts/shared/require_theme_dev.sh -t"apex" -b"b-7.3.x"
+$SCRIPT_PATH/parts/shared/require_shop_edition_packages.sh -e"${edition}" -v"dev-b-7.1.x"
+$SCRIPT_PATH/parts/shared/require_twig_components.sh -e"${edition}" -b"b-7.1.x"
+$SCRIPT_PATH/parts/shared/require_theme_dev.sh -t"twig" -b"b-7.1.x"
 
 make up
 
@@ -57,8 +55,9 @@ docker compose exec -T php vendor/bin/oe-console oe:module:install ./
 docker compose exec -T php vendor/bin/oe-eshop-doctrine_migration migrations:migrate
 docker compose exec -T php vendor/bin/oe-eshop-db_views_generate
 
+docker compose exec -T php vendor/bin/oe-console oe:module:activate fa_invoice
 docker compose exec -T php vendor/bin/oe-console oe:module:activate fa_electronic_invoice
-docker compose exec -T php vendor/bin/oe-console oe:theme:activate apex
+docker compose exec -T php vendor/bin/oe-console oe:theme:activate twig
 
 $SCRIPT_PATH/parts/shared/create_admin.sh
 
