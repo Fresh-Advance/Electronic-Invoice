@@ -14,13 +14,13 @@ $sMetadataVersion = '2.1';
  * Module information
  */
 $aModule = [
-    'id'          => 'fa_electronic_invoice',
-    'title'       => 'Electronic Invoice',
+    'id' => 'fa_electronic_invoice',
+    'title' => 'Electronic Invoice',
     'description' => 'Extension for PDF Invoice module to support electronic invoices.',
-    'thumbnail'   => 'pictures/logo.png',
-    'version'     => '1.0.0',
-    'author'      => 'MB Arbatos Klubas',
-    'url'         => '',
-    'email'       => '',
-    'extend'      => [],
+    'thumbnail' => 'logo.png',
+    'version' => '1.0.0',
+    'author' => 'Anton Fedurtsya',
+    'email' => 'anton@fedurtsya.com',
+    'url' => 'https://github.com/Fresh-Advance',
+    'extend' => [],
 ];
