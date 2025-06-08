@@ -16,6 +16,7 @@
     ],
     "require": {
         "php": ">=8.1",
+        "horstoeko/zugferd": "^1.0",
         "fresh-advance/invoice": "^v5.0.0"
     },
     "minimum-stability": "dev",
