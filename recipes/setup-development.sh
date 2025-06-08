@@ -40,6 +40,7 @@ docker compose exec -T php git config --global --add safe.directory /var/www
 $SCRIPT_PATH/parts/shared/require_shop_edition_packages.sh -e"${edition}" -v"dev-b-7.1.x"
 $SCRIPT_PATH/parts/shared/require_twig_components.sh -e"${edition}" -b"b-7.1.x"
 $SCRIPT_PATH/parts/shared/require_theme_dev.sh -t"twig" -b"b-7.1.x"
+$SCRIPT_PATH/parts/shared/require_demodata_package.sh -e"${edition}" -b"b-7.1.x"
 
 make up
 
