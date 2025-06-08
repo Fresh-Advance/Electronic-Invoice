@@ -34,9 +34,12 @@ class BuilderDocumentInformationConfiguratorTest extends TestCase
         $orderStub->method('getOrderCurrency')
             ->willReturn($currencyStub);
 
+        $dateFormat = date('123');
         $invoiceConfigurationMock = $this->createMock(InvoiceConfigurationInterface::class);
+        $invoiceConfigurationMock->method('getDate')
+            ->willReturn($dateFormat);
         $invoiceConfigurationMock->method('getFormattedDate')
-            ->willReturn($date = date('Y-m-d'));
+            ->willReturn($date = date($dateFormat));
         $invoiceConfigurationMock->method('getFormattedNumber')
             ->with($billNr)
             ->willReturn($formattedNumber = uniqid());
@@ -52,7 +55,10 @@ class BuilderDocumentInformationConfiguratorTest extends TestCase
             ->with(
                 $formattedNumber,
                 ZugferdInvoiceType::INVOICE,
-                new \DateTime($date),
+                $this->callback(function ($dateTime) use ($dateFormat, $date) {
+                    return $dateTime instanceof \DateTime &&
+                        $dateTime->format($dateFormat) === $date;
+                }),
                 $currencyName
             )
             ->willReturn($builderSpy);

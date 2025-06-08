@@ -31,7 +31,7 @@ class BuilderDocumentInformationConfigurator implements BuilderConfiguratorInter
         $builder->setDocumentInformation(
             $configuration->getFormattedNumber((string)$order->getFieldData('oxbillnr')),
             ZugferdInvoiceType::INVOICE,
-            new DateTime($configuration->getFormattedDate()),
+            DateTime::createFromFormat($configuration->getDate(), $configuration->getFormattedDate()),
             $orderCurrency->name,
         );
 
