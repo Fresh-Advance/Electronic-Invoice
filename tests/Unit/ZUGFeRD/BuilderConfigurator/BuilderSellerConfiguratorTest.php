@@ -9,6 +9,7 @@ declare(strict_types=1);
 
 namespace FreshAdvance\ElectronicInvoice\Tests\Unit\ZUGFeRD\BuilderConfigurator;
 
+use FreshAdvance\ElectronicInvoice\Geo\Settings\GeoSettingsInterface;
 use FreshAdvance\ElectronicInvoice\ZUGFeRD\BuilderConfigurator\BuilderSellerConfigurator;
 use FreshAdvance\Invoice\DataType\InvoiceDataInterface;
 use horstoeko\zugferd\codelists\ZugferdElectronicAddressScheme;
@@ -22,11 +23,12 @@ class BuilderSellerConfiguratorTest extends TestCase
     #[Test]
     public function builderConfiguredWithSellerInformationAndReturned(): void
     {
+        $companyCountryIso2 = uniqid();
+
         $shopStub = $this->createMock(Shop::class);
         $shopStub->method('getFieldData')
             ->willReturnMap([
                 ['OXCOMPANY', $companyName = uniqid()],
-                ['OXCOUNTRY', $companyCountry = uniqid()],
                 ['OXCITY', $companyCity = uniqid()],
                 ['OXSTREET', $companyStreet = uniqid()],
                 ['OXZIP', $companyZip = uniqid()],
@@ -65,7 +67,7 @@ class BuilderSellerConfiguratorTest extends TestCase
                 lineThree: null,
                 postCode: $companyZip,
                 city: $companyCity,
-                country: $companyCountry
+                country: $companyCountryIso2
             );
 
         $builderSpy->expects($this->once())
@@ -85,8 +87,13 @@ class BuilderSellerConfiguratorTest extends TestCase
                 $companyEmail,
             );
 
+        $geoSettingsStub = $this->createConfiguredStub(GeoSettingsInterface::class, [
+            'getShopCountryIso' => $companyCountryIso2,
+        ]);
 
-        $sut = new BuilderSellerConfigurator();
+        $sut = new BuilderSellerConfigurator(
+            geoSettings: $geoSettingsStub,
+        );
 
         $result = $sut->configureBuilder($builderSpy, $invoiceDataStub);
         $this->assertSame($builderSpy, $result);

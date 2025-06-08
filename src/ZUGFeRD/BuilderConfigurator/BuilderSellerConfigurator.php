@@ -9,12 +9,18 @@ declare(strict_types=1);
 
 namespace FreshAdvance\ElectronicInvoice\ZUGFeRD\BuilderConfigurator;
 
+use FreshAdvance\ElectronicInvoice\Geo\Settings\GeoSettingsInterface;
 use FreshAdvance\Invoice\DataType\InvoiceDataInterface;
 use horstoeko\zugferd\codelists\ZugferdElectronicAddressScheme;
 use horstoeko\zugferd\ZugferdDocumentBuilder;
 
 class BuilderSellerConfigurator implements BuilderConfiguratorInterface
 {
+    public function __construct(
+        private readonly GeoSettingsInterface $geoSettings,
+    ) {
+    }
+
     public function configureBuilder(
         ZugferdDocumentBuilder $builder,
         InvoiceDataInterface $invoiceData
@@ -33,13 +39,11 @@ class BuilderSellerConfigurator implements BuilderConfiguratorInterface
             vatRegNo: (string)$shop->getFieldData('OXVATNUMBER'),
         );
 
-        //@todo country should be iso2, not the name
-
         $builder->setDocumentSellerAddress(
             lineOne: (string)$shop->getFieldData('OXSTREET'),
             postCode: (string)$shop->getFieldData('OXZIP'),
             city: (string)$shop->getFieldData('OXCITY'),
-            country: (string)$shop->getFieldData('OXCOUNTRY'),
+            country: $this->geoSettings->getShopCountryIso(),
         );
 
         $builder->setDocumentSellerContact(
