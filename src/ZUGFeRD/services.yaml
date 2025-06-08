@@ -14,11 +14,11 @@ services:
   FreshAdvance\ElectronicInvoice\ZUGFeRD\Factory\ZugferdXmlBuilderFactoryInterface:
     class: FreshAdvance\ElectronicInvoice\ZUGFeRD\Factory\ZugferdXmlBuilderFactory
 
-  FreshAdvance\ElectronicInvoice\ZUGFeRD\Service\ZugferdXmlBuilderInterface:
-    class: FreshAdvance\ElectronicInvoice\ZUGFeRD\Service\ZugferdXmlBuilder
-
   FreshAdvance\ElectronicInvoice\ZUGFeRD\Factory\ZugferdPdfMergerFactoryInterface:
     class: FreshAdvance\ElectronicInvoice\ZUGFeRD\Factory\ZugferdPdfMergerFactory
+
+  FreshAdvance\ElectronicInvoice\ZUGFeRD\Service\ZugferdXmlBuilderInterface:
+    class: FreshAdvance\ElectronicInvoice\ZUGFeRD\Service\ZugferdXmlBuilder
 
   FreshAdvance\ElectronicInvoice\ZUGFeRD\Service\ZugferdPdfMergerInterface:
     class: FreshAdvance\ElectronicInvoice\ZUGFeRD\Service\ZugferdPdfMerger

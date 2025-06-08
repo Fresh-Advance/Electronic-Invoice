@@ -1,8 +1,0 @@
-imports:
-  - { resource: Geo/services.yaml }
-  - { resource: ZUGFeRD/services.yaml }
-
-services:
-  _defaults:
-    public: false
-    autowire: true

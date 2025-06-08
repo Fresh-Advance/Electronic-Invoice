@@ -8,3 +8,6 @@ services:
 
   FreshAdvance\ElectronicInvoice\Geo\Service\GeoServiceInterface:
     class: FreshAdvance\ElectronicInvoice\Geo\Service\GeoService
+
+  FreshAdvance\ElectronicInvoice\Geo\Settings\GeoSettingsInterface:
+    class: FreshAdvance\ElectronicInvoice\Geo\Settings\GeoSettings
