@@ -16,7 +16,7 @@
     ],
     "require": {
         "php": ">=8.1",
-        "fresh-advance/invoice": "dev-b-7.1.x-einvoice"
+        "fresh-advance/invoice": "^v5.0.0"
     },
     "minimum-stability": "dev",
     "prefer-stable": true,
