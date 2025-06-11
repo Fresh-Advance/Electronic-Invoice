@@ -9,12 +9,18 @@ declare(strict_types=1);
 
 namespace FreshAdvance\ElectronicInvoice\ZUGFeRD\BuilderConfigurator;
 
+use FreshAdvance\ElectronicInvoice\Order\Service\OrderArticlePriceAdjustInterface;
 use FreshAdvance\Invoice\DataType\InvoiceDataInterface;
 use FreshAdvance\Invoice\Pdf\Model\OrderArticleExtension;
 use horstoeko\zugferd\ZugferdDocumentBuilder;
 
 class BuilderItemConfigurator implements BuilderItemConfiguratorInterface
 {
+    public function __construct(
+        private readonly OrderArticlePriceAdjustInterface $orderArticlePriceAdjust,
+    ) {
+    }
+
     public function configureOneItem(
         ZugferdDocumentBuilder $builder,
         InvoiceDataInterface $invoiceData,
@@ -28,13 +34,24 @@ class BuilderItemConfigurator implements BuilderItemConfiguratorInterface
             sellerAssignedID: (string)$orderArticle->getFieldData('OXARTNUM')
         );
 
-        $builder->setDocumentPositionNetPrice((float)$orderArticle->getFieldData('OXNPRICE'));
+        $builder->setDocumentPositionNetPrice(
+            $this->orderArticlePriceAdjust->adjustNetValueByOrder(
+                (float)$orderArticle->getFieldData('OXNPRICE'),
+                $invoiceData->getOrder(),
+            )
+        );
+
         $builder->setDocumentPositionQuantity((float)$orderArticle->getFieldData('OXAMOUNT'), "H87");
 
         // todo: category code Standard doesnt fit if there are no applied, we should check at least this case.
         $builder->addDocumentPositionTax('S', 'VAT', (float)$orderArticle->getFieldData('OXVAT'));
 
-        $builder->setDocumentPositionLineSummation((float)$orderArticle->getFieldData('OXNETPRICE'));
+        $builder->setDocumentPositionLineSummation(
+            $this->orderArticlePriceAdjust->adjustNetValueByOrder(
+                (float)$orderArticle->getFieldData('OXNETPRICE'),
+                $invoiceData->getOrder(),
+            )
+        );
 
         return $builder;
     }

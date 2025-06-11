@@ -15,6 +15,7 @@ use FreshAdvance\Invoice\DataType\InvoiceDataInterface;
 use FreshAdvance\Invoice\Pdf\Model\OrderArticleExtension;
 use horstoeko\zugferd\ZugferdDocumentBuilder;
 use OxidEsales\Eshop\Application\Model\Order;
+use OxidEsales\Eshop\Application\Model\OrderArticleList;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
@@ -25,10 +26,12 @@ class BuilderItemConfiguratorIteratorTest extends TestCase
     {
         $invoiceDataStub = $this->createConfiguredStub(InvoiceDataInterface::class, [
             'getOrder' => $this->createConfiguredStub(Order::class, [
-                'getOrderArticles' => [
-                    "10" => $item1 = $this->createStub(OrderArticleExtension::class),
-                    "20" => $item2 = $this->createStub(OrderArticleExtension::class),
-                ],
+                'getOrderArticles' => $this->createConfiguredStub(OrderArticleList::class, [
+                    'getArray' => [
+                        "10" => $item1 = $this->createStub(OrderArticleExtension::class),
+                        "20" => $item2 = $this->createStub(OrderArticleExtension::class),
+                    ]
+                ]),
             ]),
         ]);
 

@@ -1,0 +1,10 @@
+services:
+  _defaults:
+    public: false
+    autowire: true
+
+  FreshAdvance\ElectronicInvoice\Order\Service\OrderArticlePriceAdjustInterface:
+    class: FreshAdvance\ElectronicInvoice\Order\Service\OrderArticlePriceAdjust
+
+  FreshAdvance\ElectronicInvoice\Order\Service\NetDifferenceCalculatorInterface:
+    class: FreshAdvance\ElectronicInvoice\Order\Service\NetDifferenceCalculator

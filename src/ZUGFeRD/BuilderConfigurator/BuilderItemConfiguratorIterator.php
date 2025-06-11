@@ -24,7 +24,7 @@ class BuilderItemConfiguratorIterator implements BuilderConfiguratorInterface
         ZugferdDocumentBuilder $builder,
         InvoiceDataInterface $invoiceData
     ): ZugferdDocumentBuilder {
-        $orderArticles = $invoiceData->getOrder()->getOrderArticles();
+        $orderArticles = $invoiceData->getOrder()->getOrderArticles()->getArray();
 
         $position = 0;
         /** @var OrderArticleExtension $orderArticle */

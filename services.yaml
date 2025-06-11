@@ -1,5 +1,6 @@
 imports:
   - { resource: src/Geo/services.yaml }
+  - { resource: src/Order/services.yaml }
   - { resource: src/ZUGFeRD/services.yaml }
 
 services:

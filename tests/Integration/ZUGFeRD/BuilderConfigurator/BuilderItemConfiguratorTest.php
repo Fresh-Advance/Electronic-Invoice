@@ -9,10 +9,12 @@ declare(strict_types=1);
 
 namespace FreshAdvance\ElectronicInvoice\Tests\Integration\ZUGFeRD\BuilderConfigurator;
 
+use FreshAdvance\ElectronicInvoice\Order\Service\OrderArticlePriceAdjustInterface;
 use FreshAdvance\ElectronicInvoice\ZUGFeRD\BuilderConfigurator\BuilderItemConfigurator;
 use FreshAdvance\Invoice\DataType\InvoiceDataInterface;
 use FreshAdvance\Invoice\Pdf\Model\OrderArticleExtension;
 use horstoeko\zugferd\ZugferdDocumentBuilder;
+use OxidEsales\Eshop\Application\Model\Order;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
@@ -25,6 +27,7 @@ class BuilderItemConfiguratorTest extends TestCase
 
         $invoiceDataStub = $this->createConfiguredStub(InvoiceDataInterface::class, [
             'getLanguageId' => $languageId = rand(0, 100),
+            'getOrder' => $orderStub = $this->createStub(Order::class),
         ]);
 
         $orderArticleMock = $this->createMock(OrderArticleExtension::class);
@@ -36,9 +39,15 @@ class BuilderItemConfiguratorTest extends TestCase
                 ['OXARTNUM', $artNum = uniqid()],
                 ['OXNPRICE', (string)$oneNet = rand(10, 100)], // one net
                 ['OXNETPRICE', (string)$totalNet = rand(100, 200)], // total net
-                ['OXBPRICE', (string)$oneBrut = rand(10, 100)], // one brut
                 ['OXAMOUNT', (string)$amount = rand(1, 10)],
                 ['OXVAT', (string)$vat = rand(10, 100)], // VAT percentage
+            ]);
+
+        $priceAdjustmentMock = $this->createMock(OrderArticlePriceAdjustInterface::class);
+        $priceAdjustmentMock->method('adjustNetValueByOrder')
+            ->willReturnMap([
+                [(float)$oneNet, $orderStub, $oneNetAdjusted = (float)rand(10, 100)],
+                [(float)$totalNet, $orderStub, $totalNetAdjusted = (float)rand(10, 100)],
             ]);
 
         $builderSpy = $this->createMock(ZugferdDocumentBuilder::class);
@@ -53,7 +62,7 @@ class BuilderItemConfiguratorTest extends TestCase
 
         $builderSpy->expects($this->once())
             ->method('setDocumentPositionNetPrice')
-            ->with($oneNet);
+            ->with($oneNetAdjusted);
 
         $builderSpy->expects($this->once())
             ->method('setDocumentPositionQuantity')
@@ -65,12 +74,24 @@ class BuilderItemConfiguratorTest extends TestCase
 
         $builderSpy->expects($this->once())
             ->method('setDocumentPositionLineSummation')
-            ->with($totalNet);
+            ->with($totalNetAdjusted);
 
-        $sut = new BuilderItemConfigurator();
+        $sut = $this->getSut(
+            priceAdjustmentMock: $priceAdjustmentMock,
+        );
 
         $result = $sut->configureOneItem($builderSpy, $invoiceDataStub, $position, $orderArticleMock);
 
         $this->assertSame($builderSpy, $result);
+    }
+
+    public function getSut(
+        ?OrderArticlePriceAdjustInterface $priceAdjustmentMock = null
+    ): BuilderItemConfigurator {
+        $priceAdjustmentMock ??= $this->createStub(OrderArticlePriceAdjustInterface::class);
+
+        return new BuilderItemConfigurator(
+            orderArticlePriceAdjust: $priceAdjustmentMock,
+        );
     }
 }
