@@ -43,8 +43,11 @@ class BuilderItemConfigurator implements BuilderItemConfiguratorInterface
 
         $builder->setDocumentPositionQuantity((float)$orderArticle->getFieldData('OXAMOUNT'), "H87");
 
-        // todo: category code Standard doesnt fit if there are no applied, we should check at least this case.
-        $builder->addDocumentPositionTax('S', 'VAT', (float)$orderArticle->getFieldData('OXVAT'));
+        $builder->addDocumentPositionTax(
+            $orderArticle->getFieldData('OXVAT') > 0 ? 'S' : 'Z',
+            'VAT',
+            (float)$orderArticle->getFieldData('OXVAT')
+        );
 
         $builder->setDocumentPositionLineSummation(
             $this->orderArticlePriceAdjust->adjustNetValueByOrder(

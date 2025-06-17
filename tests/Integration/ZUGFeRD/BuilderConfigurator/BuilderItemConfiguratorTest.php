@@ -15,13 +15,14 @@ use FreshAdvance\Invoice\DataType\InvoiceDataInterface;
 use FreshAdvance\Invoice\Pdf\Model\OrderArticleExtension;
 use horstoeko\zugferd\ZugferdDocumentBuilder;
 use OxidEsales\Eshop\Application\Model\Order;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
 class BuilderItemConfiguratorTest extends TestCase
 {
     #[Test]
-    public function configuresBuilderWithItem(): void
+    public function configuresBuilderWithItemData(): void
     {
         $position = rand(1, 100);
 
@@ -40,7 +41,6 @@ class BuilderItemConfiguratorTest extends TestCase
                 ['OXNPRICE', (string)$oneNet = rand(10, 100)], // one net
                 ['OXNETPRICE', (string)$totalNet = rand(100, 200)], // total net
                 ['OXAMOUNT', (string)$amount = rand(1, 10)],
-                ['OXVAT', (string)$vat = rand(10, 100)], // VAT percentage
             ]);
 
         $priceAdjustmentMock = $this->createMock(OrderArticlePriceAdjustInterface::class);
@@ -69,10 +69,6 @@ class BuilderItemConfiguratorTest extends TestCase
             ->with($amount, 'H87');
 
         $builderSpy->expects($this->once())
-            ->method('addDocumentPositionTax')
-            ->with('S', 'VAT', $vat);
-
-        $builderSpy->expects($this->once())
             ->method('setDocumentPositionLineSummation')
             ->with($totalNetAdjusted);
 
@@ -83,6 +79,46 @@ class BuilderItemConfiguratorTest extends TestCase
         $result = $sut->configureOneItem($builderSpy, $invoiceDataStub, $position, $orderArticleMock);
 
         $this->assertSame($builderSpy, $result);
+    }
+
+    public static function vatStateDataProvider(): \Generator
+    {
+        yield 'zero vat' => [
+            'vat' => '0',
+            'expectedVatType' => 'Z',
+        ];
+
+        yield 'standard vat' => [
+            'vat' => (string)rand(1, 50),
+            'expectedVatType' => 'S',
+        ];
+    }
+
+    #[Test]
+    #[DataProvider('vatStateDataProvider')]
+    public function configuresOneItemCorrectVatState(string $vat, string $expectedVatType): void
+    {
+        $position = rand(1, 100);
+
+        $invoiceDataStub = $this->createConfiguredStub(InvoiceDataInterface::class, [
+            'getOrder' => $this->createStub(Order::class),
+        ]);
+
+        $orderArticleMock = $this->createMock(OrderArticleExtension::class);
+        $orderArticleMock->method('getFieldData')
+            ->willReturnMap([
+                ['OXVAT', $vat], // VAT percentage
+            ]);
+
+        $builderSpy = $this->createMock(ZugferdDocumentBuilder::class);
+
+        $builderSpy->expects($this->once())
+            ->method('addDocumentPositionTax')
+            ->with($expectedVatType, 'VAT', $vat);
+
+        $sut = $this->getSut();
+
+        $sut->configureOneItem($builderSpy, $invoiceDataStub, $position, $orderArticleMock);
     }
 
     public function getSut(
