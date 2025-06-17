@@ -6,5 +6,6 @@ services:
   FreshAdvance\ElectronicInvoice\Order\Service\OrderArticlePriceAdjustInterface:
     class: FreshAdvance\ElectronicInvoice\Order\Service\OrderArticlePriceAdjust
 
-  FreshAdvance\ElectronicInvoice\Order\Service\NetDifferenceCalculatorInterface:
-    class: FreshAdvance\ElectronicInvoice\Order\Service\NetDifferenceCalculator
+  FreshAdvance\ElectronicInvoice\Order\Service\OrderDifferenceCalculatorInterface:
+    class: FreshAdvance\ElectronicInvoice\Order\Service\OrderDifferenceCalculator
+
