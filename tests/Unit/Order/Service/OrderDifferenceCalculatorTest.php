@@ -76,7 +76,11 @@ class OrderDifferenceCalculatorTest extends TestCase
         $orderStub->method('getFieldData')->willReturnMap([
             ['OXTOTALNETSUM', rand(20, 200)],
         ]);
-
+        $orderStub->method('getOrderArticles')->willReturn(
+            $this->createConfiguredStub(OrderArticleList::class, [
+                'getArray' => []
+            ])
+        );
         $sut = $this->getSut();
 
         $result = $sut->getNetDifferenceCoefficient($orderStub);
@@ -146,6 +150,11 @@ class OrderDifferenceCalculatorTest extends TestCase
             ['OXTOTALNETSUM', rand(50, 100)],
             ['OXTOTALBRUTSUM', rand(101, 200)],
         ]);
+        $orderStub->method('getOrderArticles')->willReturn(
+            $this->createConfiguredStub(OrderArticleList::class, [
+                'getArray' => []
+            ])
+        );
 
         $sut = $this->getSut();
 

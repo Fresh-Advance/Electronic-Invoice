@@ -15,7 +15,7 @@ class OrderDifferenceCalculator implements OrderDifferenceCalculatorInterface
 {
     private function getItemFieldSum(Order $order, string $itemField): float
     {
-        $orderArticles = $order->getOrderArticles()?->getArray();
+        $orderArticles = $order->getOrderArticles()->getArray();
 
         $articleFieldSum = 0.0;
         foreach ($orderArticles as $orderArticle) {
