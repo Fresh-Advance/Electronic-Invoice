@@ -13,7 +13,7 @@ use Codeception\PHPUnit\TestCase;
 use FreshAdvance\ElectronicInvoice\ZUGFeRD\InvoiceGeneratorDecorator;
 use FreshAdvance\ElectronicInvoice\ZUGFeRD\Service\ZugferdPdfMergerInterface;
 use FreshAdvance\ElectronicInvoice\ZUGFeRD\Service\ZugferdXmlBuilderInterface;
-use FreshAdvance\Invoice\DataType\InvoiceDataInterface;
+use FreshAdvance\Invoice\InvoiceData\DataType\InvoiceDataInterface;
 use FreshAdvance\Invoice\Pdf\InvoiceGeneratorInterface;
 use PHPUnit\Framework\Attributes\Test;
 

@@ -11,7 +11,7 @@ namespace FreshAdvance\ElectronicInvoice\Tests\Integration\ZUGFeRD\BuilderConfig
 
 use FreshAdvance\ElectronicInvoice\Order\Service\OrderArticlePriceAdjustInterface;
 use FreshAdvance\ElectronicInvoice\ZUGFeRD\BuilderConfigurator\BuilderItemConfigurator;
-use FreshAdvance\Invoice\DataType\InvoiceDataInterface;
+use FreshAdvance\Invoice\InvoiceData\DataType\InvoiceDataInterface;
 use FreshAdvance\Invoice\Pdf\Model\OrderArticleExtension;
 use horstoeko\zugferd\ZugferdDocumentBuilder;
 use OxidEsales\Eshop\Application\Model\Order;

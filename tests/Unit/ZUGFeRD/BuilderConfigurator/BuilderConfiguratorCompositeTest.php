@@ -11,7 +11,7 @@ namespace FreshAdvance\ElectronicInvoice\Tests\Unit\ZUGFeRD\BuilderConfigurator;
 
 use FreshAdvance\ElectronicInvoice\ZUGFeRD\BuilderConfigurator\BuilderConfiguratorComposite;
 use FreshAdvance\ElectronicInvoice\ZUGFeRD\BuilderConfigurator\BuilderConfiguratorInterface;
-use FreshAdvance\Invoice\DataType\InvoiceDataInterface;
+use FreshAdvance\Invoice\InvoiceData\DataType\InvoiceDataInterface;
 use horstoeko\zugferd\ZugferdDocumentBuilder;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;

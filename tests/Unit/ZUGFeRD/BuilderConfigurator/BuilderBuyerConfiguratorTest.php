@@ -11,8 +11,8 @@ namespace FreshAdvance\ElectronicInvoice\Tests\Unit\ZUGFeRD\BuilderConfigurator;
 
 use FreshAdvance\ElectronicInvoice\ZUGFeRD\BuilderConfigurator\BuilderBuyerConfigurator;
 use FreshAdvance\ElectronicInvoice\ZUGFeRD\BuilderConfigurator\BuilderConfiguratorInterface;
-use FreshAdvance\Invoice\DataType\InvoiceDataInterface;
 use FreshAdvance\ElectronicInvoice\Geo\Service\GeoServiceInterface;
+use FreshAdvance\Invoice\InvoiceData\DataType\InvoiceDataInterface;
 use horstoeko\zugferd\codelists\ZugferdElectronicAddressScheme;
 use horstoeko\zugferd\ZugferdDocumentBuilder;
 use OxidEsales\Eshop\Application\Model\Order;

@@ -10,8 +10,9 @@ declare(strict_types=1);
 namespace FreshAdvance\ElectronicInvoice\Tests\Unit\ZUGFeRD\BuilderConfigurator;
 
 use FreshAdvance\ElectronicInvoice\ZUGFeRD\BuilderConfigurator\BuilderDocumentInformationConfigurator;
-use FreshAdvance\Invoice\DataType\InvoiceConfigurationInterface;
-use FreshAdvance\Invoice\DataType\InvoiceDataInterface;
+use FreshAdvance\Invoice\InvoiceData\DataType\InvoiceDataInterface;
+use FreshAdvance\Invoice\InvoiceData\InvoiceConfiguration\DataType\InvoiceConfigurationInterface;
+use FreshAdvance\Invoice\Pdf\Service\FormatCalculatorInterface;
 use horstoeko\zugferd\codelists\ZugferdInvoiceType;
 use horstoeko\zugferd\ZugferdDocumentBuilder;
 use OxidEsales\Eshop\Application\Model\Order;
@@ -40,14 +41,18 @@ class BuilderDocumentInformationConfiguratorTest extends TestCase
             ->willReturn($dateFormat);
         $invoiceConfigurationMock->method('getFormattedDate')
             ->willReturn($date = date($dateFormat));
-        $invoiceConfigurationMock->method('getFormattedNumber')
-            ->with($billNr)
-            ->willReturn($formattedNumber = uniqid());
+        $invoiceConfigurationMock->method('getNumber')
+            ->willReturn($numberFormat = uniqid());
 
         $invoiceDataStub = $this->createConfiguredStub(InvoiceDataInterface::class, [
             'getOrder' => $orderStub,
             'getInvoiceConfiguration' => $invoiceConfigurationMock
         ]);
+
+        $formatCalculator = $this->createMock(FormatCalculatorInterface::class);
+        $formatCalculator->method('calculateByFormat')
+            ->with($numberFormat, $invoiceDataStub)
+            ->willReturn($formattedNumber = uniqid());
 
         $builderSpy = $this->createMock(ZugferdDocumentBuilder::class);
         $builderSpy->expects($this->once())
@@ -68,7 +73,9 @@ class BuilderDocumentInformationConfiguratorTest extends TestCase
             ->with(BuilderDocumentInformationConfigurator::PROCESS_ID)
             ->willReturn($builderSpy);
 
-        $sut = new BuilderDocumentInformationConfigurator();
+        $sut = new BuilderDocumentInformationConfigurator(
+            formatCalculator: $formatCalculator,
+        );
 
         $result = $sut->configureBuilder($builderSpy, $invoiceDataStub);
         $this->assertSame($builderSpy, $result);

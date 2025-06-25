@@ -7,7 +7,7 @@
 
 namespace FreshAdvance\ElectronicInvoice\ZUGFeRD\Service;
 
-use FreshAdvance\Invoice\DataType\InvoiceDataInterface;
+use FreshAdvance\Invoice\InvoiceData\DataType\InvoiceDataInterface;
 
 interface ZugferdXmlBuilderInterface
 {

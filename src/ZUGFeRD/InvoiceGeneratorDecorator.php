@@ -9,9 +9,9 @@ declare(strict_types=1);
 
 namespace FreshAdvance\ElectronicInvoice\ZUGFeRD;
 
-use FreshAdvance\Invoice\DataType\InvoiceDataInterface;
 use FreshAdvance\ElectronicInvoice\ZUGFeRD\Service\ZugferdPdfMergerInterface;
 use FreshAdvance\ElectronicInvoice\ZUGFeRD\Service\ZugferdXmlBuilderInterface;
+use FreshAdvance\Invoice\InvoiceData\DataType\InvoiceDataInterface;
 use FreshAdvance\Invoice\Pdf\InvoiceGeneratorInterface;
 
 class InvoiceGeneratorDecorator implements InvoiceGeneratorInterface

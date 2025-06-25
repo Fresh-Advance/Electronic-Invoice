@@ -9,7 +9,7 @@ declare(strict_types=1);
 
 namespace FreshAdvance\ElectronicInvoice\ZUGFeRD\Service;
 
-use FreshAdvance\Invoice\DataType\InvoiceDataInterface;
+use FreshAdvance\Invoice\InvoiceData\DataType\InvoiceDataInterface;
 use FreshAdvance\ElectronicInvoice\ZUGFeRD\BuilderConfigurator\BuilderConfiguratorInterface;
 use FreshAdvance\ElectronicInvoice\ZUGFeRD\Factory\ZugferdXmlBuilderFactoryInterface;
 

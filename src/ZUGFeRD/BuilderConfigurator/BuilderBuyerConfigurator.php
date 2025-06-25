@@ -9,8 +9,8 @@ declare(strict_types=1);
 
 namespace FreshAdvance\ElectronicInvoice\ZUGFeRD\BuilderConfigurator;
 
-use FreshAdvance\Invoice\DataType\InvoiceDataInterface;
 use FreshAdvance\ElectronicInvoice\Geo\Service\GeoServiceInterface;
+use FreshAdvance\Invoice\InvoiceData\DataType\InvoiceDataInterface;
 use horstoeko\zugferd\codelists\ZugferdElectronicAddressScheme;
 use horstoeko\zugferd\ZugferdDocumentBuilder;
 

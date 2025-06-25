@@ -10,13 +10,19 @@ declare(strict_types=1);
 namespace FreshAdvance\ElectronicInvoice\ZUGFeRD\BuilderConfigurator;
 
 use DateTime;
-use FreshAdvance\Invoice\DataType\InvoiceDataInterface;
+use FreshAdvance\Invoice\InvoiceData\DataType\InvoiceDataInterface;
+use FreshAdvance\Invoice\Pdf\Service\FormatCalculatorInterface;
 use horstoeko\zugferd\codelists\ZugferdInvoiceType;
 use horstoeko\zugferd\ZugferdDocumentBuilder;
 
 class BuilderDocumentInformationConfigurator implements BuilderConfiguratorInterface
 {
     public const PROCESS_ID = 'urn:zugferd:invoice:2p1:en16931';
+
+    public function __construct(
+        private readonly FormatCalculatorInterface $formatCalculator,
+    ) {
+    }
 
     public function configureBuilder(
         ZugferdDocumentBuilder $builder,
@@ -32,7 +38,7 @@ class BuilderDocumentInformationConfigurator implements BuilderConfiguratorInter
         $documentDate = DateTime::createFromFormat($configuration->getDate(), $configuration->getFormattedDate());
 
         $builder->setDocumentInformation(
-            $configuration->getFormattedNumber((string)$order->getFieldData('oxbillnr')),
+            $this->formatCalculator->calculateByFormat($configuration->getNumber(), $invoiceData),
             ZugferdInvoiceType::INVOICE,
             $documentDate,
             $orderCurrency->name,

@@ -10,7 +10,7 @@ declare(strict_types=1);
 namespace FreshAdvance\ElectronicInvoice\Tests\Unit\ZUGFeRD\BuilderConfigurator;
 
 use FreshAdvance\ElectronicInvoice\ZUGFeRD\BuilderConfigurator\BuilderTotalsConfigurator;
-use FreshAdvance\Invoice\DataType\InvoiceDataInterface;
+use FreshAdvance\Invoice\InvoiceData\DataType\InvoiceDataInterface;
 use horstoeko\zugferd\ZugferdDocumentBuilder;
 use OxidEsales\Eshop\Application\Model\Order;
 use OxidEsales\Eshop\Core\Price;
