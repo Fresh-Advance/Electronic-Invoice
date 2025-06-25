@@ -14,7 +14,6 @@
 
 ## Limitations
 
-* Only Twig shop installations supported
 * Tested with:
   * Shop 7.1 - PHP 8.1, 8.2, MySQL 5.7 and 8.0
   * Shop 7.2 - PHP 8.2, 8.3, MySQL 5.7 and 8.0

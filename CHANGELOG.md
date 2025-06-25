@@ -4,7 +4,7 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
-## [v1.0.0-rc.5] - Unreleased
+## [v1.0.0-rc.5] - 2025-06-25
 
 ### Fixed
 - Update by Invoice module v5.0.0-rc.2 changes
@@ -29,3 +29,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Added
 - ZUGFeRD EN-16931 format support
+
+[v1.0.0-rc.5]: https://github.com/Fresh-Advance/Electronic-Invoice/compare/v1.0.0-rc.4...v1.0.0-rc.5
+[v1.0.0-rc.4]: https://github.com/Fresh-Advance/Electronic-Invoice/compare/v1.0.0-rc.3...v1.0.0-rc.4
+[v1.0.0-rc.3]: https://github.com/Fresh-Advance/Electronic-Invoice/compare/v1.0.0-rc.2...v1.0.0-rc.3
+[v1.0.0-rc.2]: https://github.com/Fresh-Advance/Electronic-Invoice/compare/v1.0.0-rc.1...v1.0.0-rc.2
+[v1.0.0-rc.1]: https://github.com/Fresh-Advance/Electronic-Invoice/compare/9e7f4664f4c...v1.0.0-rc.1
