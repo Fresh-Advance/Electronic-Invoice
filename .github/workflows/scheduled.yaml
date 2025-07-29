@@ -9,7 +9,7 @@ on:
 jobs:
   nightly_71:
     if: always()
-    uses: oxid-eSales/github-actions/.github/workflows/universal_workflow_light.yaml@v4
+    uses: oxid-eSales/github-actions/.github/workflows/universal_workflow_light.yaml@v5
     with:
       testplan: '~/defaults/7.1.x.yaml,~/defaults/scheduled.yaml,~/module-template.yaml'
       runs_on: '"ubuntu-latest"'
