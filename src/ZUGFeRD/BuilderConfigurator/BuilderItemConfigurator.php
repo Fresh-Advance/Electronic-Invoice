@@ -9,18 +9,12 @@ declare(strict_types=1);
 
 namespace FreshAdvance\ElectronicInvoice\ZUGFeRD\BuilderConfigurator;
 
-use FreshAdvance\ElectronicInvoice\Order\Service\OrderArticlePriceAdjustInterface;
 use FreshAdvance\Invoice\InvoiceData\DataType\InvoiceDataInterface;
 use FreshAdvance\Invoice\Pdf\Model\OrderArticleExtension;
 use horstoeko\zugferd\ZugferdDocumentBuilder;
 
 class BuilderItemConfigurator implements BuilderItemConfiguratorInterface
 {
-    public function __construct(
-        private readonly OrderArticlePriceAdjustInterface $orderArticlePriceAdjust,
-    ) {
-    }
-
     public function configureOneItem(
         ZugferdDocumentBuilder $builder,
         InvoiceDataInterface $invoiceData,
@@ -34,12 +28,7 @@ class BuilderItemConfigurator implements BuilderItemConfiguratorInterface
             sellerAssignedID: (string)$orderArticle->getFieldData('OXARTNUM')
         );
 
-        $builder->setDocumentPositionNetPrice(
-            $this->orderArticlePriceAdjust->adjustNetValueByOrder(
-                (float)$orderArticle->getFieldData('OXNPRICE'),
-                $invoiceData->getOrder(),
-            )
-        );
+        $builder->setDocumentPositionNetPrice((float)$orderArticle->getFieldData('OXNPRICE'));
 
         $builder->setDocumentPositionQuantity((float)$orderArticle->getFieldData('OXAMOUNT'), "H87");
 
@@ -49,12 +38,7 @@ class BuilderItemConfigurator implements BuilderItemConfiguratorInterface
             (float)$orderArticle->getFieldData('OXVAT')
         );
 
-        $builder->setDocumentPositionLineSummation(
-            $this->orderArticlePriceAdjust->adjustNetValueByOrder(
-                (float)$orderArticle->getFieldData('OXNETPRICE'),
-                $invoiceData->getOrder(),
-            )
-        );
+        $builder->setDocumentPositionLineSummation((float)$orderArticle->getFieldData('OXNETPRICE'));
 
         return $builder;
     }

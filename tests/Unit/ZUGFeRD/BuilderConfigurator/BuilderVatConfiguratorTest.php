@@ -9,7 +9,6 @@ declare(strict_types=1);
 
 namespace FreshAdvance\ElectronicInvoice\Tests\Unit\ZUGFeRD\BuilderConfigurator;
 
-use FreshAdvance\ElectronicInvoice\Order\Service\OrderArticlePriceAdjustInterface;
 use FreshAdvance\ElectronicInvoice\ZUGFeRD\BuilderConfigurator\BuilderConfiguratorInterface;
 use FreshAdvance\ElectronicInvoice\ZUGFeRD\BuilderConfigurator\BuilderVatConfigurator;
 use FreshAdvance\Invoice\InvoiceData\DataType\InvoiceDataInterface;
@@ -81,28 +80,14 @@ class BuilderVatConfiguratorTest extends TestCase
             ]),
         ]);
 
-        $orderArticlePriceAdjustMock = $this->createMock(OrderArticlePriceAdjustInterface::class);
-        $orderArticlePriceAdjustMock->method('adjustNetValueByOrder')
-            ->willReturnMap([
-                [(float)$item1net, $orderStub, $item1netAdjusted = rand(100, 200)],
-                [(float)$item2net, $orderStub, $item2netAdjusted = rand(100, 200)],
-                [(float)$item3net, $orderStub, $item3netAdjusted = rand(100, 200)],
-            ]);
-        $orderArticlePriceAdjustMock->method('adjustVatValueByOrder')
-            ->willReturnMap([
-                [(float)$item1vat, $orderStub, $item1vatAdjusted = rand(100, 200)],
-                [(float)$item2vat, $orderStub, $item2vatAdjusted = rand(100, 200)],
-                [(float)$item3vat, $orderStub, $item3vatAdjusted = rand(100, 200)],
-            ]);
-
         $expectedVats = [
             $vat1 => [
-                'net' => $item1netAdjusted + $item2netAdjusted + $delNet,
-                'vat' => $item1vatAdjusted + $item2vatAdjusted + $delVatValue,
+                'net' => $item1net + $item2net + $delNet,
+                'vat' => $item1vat + $item2vat + $delVatValue,
             ],
             $vat2 => [
-                'net' => $item3netAdjusted,
-                'vat' => $item3vatAdjusted,
+                'net' => $item3net,
+                'vat' => $item3vat,
             ],
             $vat3 => [
                 'net' => $payNet + $wrapNet,
@@ -133,20 +118,14 @@ class BuilderVatConfiguratorTest extends TestCase
                 return $builderSpy;
             });
 
-        $sut = $this->getSut(
-            orderArticlePriceAdjust: $orderArticlePriceAdjustMock,
-        );
+        $sut = $this->getSut();
 
         $result = $sut->configureBuilder($builderSpy, $invoiceDataStub);
         $this->assertSame($builderSpy, $result);
     }
 
-    public function getSut(
-        ?OrderArticlePriceAdjustInterface $orderArticlePriceAdjust = null
-    ): BuilderConfiguratorInterface {
-        $orderArticlePriceAdjust ??= $this->createStub(OrderArticlePriceAdjustInterface::class);
-        return new BuilderVatConfigurator(
-            orderArticlePriceAdjust: $orderArticlePriceAdjust,
-        );
+    public function getSut(): BuilderConfiguratorInterface
+    {
+        return new BuilderVatConfigurator();
     }
 }

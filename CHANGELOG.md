@@ -4,6 +4,11 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [v1.0.0-rc.6] - 2025-08-05
+
+### Removed
+- Adjustements to net prices are removed. The module works only with shops configured for Net prices currently, while the bug in shop is not fixed.
+
 ## [v1.0.0-rc.5] - 2025-06-25
 
 ### Fixed
@@ -30,6 +35,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ### Added
 - ZUGFeRD EN-16931 format support
 
+[v1.0.0-rc.6]: https://github.com/Fresh-Advance/Electronic-Invoice/compare/v1.0.0-rc.5...v1.0.0-rc.6
 [v1.0.0-rc.5]: https://github.com/Fresh-Advance/Electronic-Invoice/compare/v1.0.0-rc.4...v1.0.0-rc.5
 [v1.0.0-rc.4]: https://github.com/Fresh-Advance/Electronic-Invoice/compare/v1.0.0-rc.3...v1.0.0-rc.4
 [v1.0.0-rc.3]: https://github.com/Fresh-Advance/Electronic-Invoice/compare/v1.0.0-rc.2...v1.0.0-rc.3

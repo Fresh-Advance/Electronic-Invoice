@@ -33,10 +33,6 @@ class ServiceConfigurationTest extends IntegrationTestCase
             [\FreshAdvance\ElectronicInvoice\Geo\Service\GeoServiceInterface::class],
             [\FreshAdvance\ElectronicInvoice\Geo\Settings\GeoSettingsInterface::class],
 
-            // Order
-            [\FreshAdvance\ElectronicInvoice\Order\Service\OrderArticlePriceAdjustInterface::class],
-            [\FreshAdvance\ElectronicInvoice\Order\Service\OrderDifferenceCalculatorInterface::class],
-
             // ZUGFeRD
             [\FreshAdvance\ElectronicInvoice\ZUGFeRD\BuilderConfigurator\BuilderConfiguratorInterface::class],
             [\FreshAdvance\ElectronicInvoice\ZUGFeRD\BuilderConfigurator\BuilderItemConfiguratorInterface::class],

@@ -9,7 +9,6 @@ declare(strict_types=1);
 
 namespace FreshAdvance\ElectronicInvoice\ZUGFeRD\BuilderConfigurator;
 
-use FreshAdvance\ElectronicInvoice\Order\Service\OrderArticlePriceAdjustInterface;
 use FreshAdvance\Invoice\InvoiceData\DataType\InvoiceDataInterface;
 use horstoeko\zugferd\ZugferdDocumentBuilder;
 use OxidEsales\Eshop\Application\Model\Order;
@@ -17,11 +16,6 @@ use OxidEsales\Eshop\Application\Model\OrderArticle;
 
 class BuilderVatConfigurator implements BuilderConfiguratorInterface
 {
-    public function __construct(
-        private readonly OrderArticlePriceAdjustInterface $orderArticlePriceAdjust,
-    ) {
-    }
-
     public function configureBuilder(
         ZugferdDocumentBuilder $builder,
         InvoiceDataInterface $invoiceData
@@ -54,14 +48,8 @@ class BuilderVatConfigurator implements BuilderConfiguratorInterface
             $rates = $this->addVatValues(
                 $rates,
                 (float)$oneItem->getFieldData('OXVAT'),
-                $this->orderArticlePriceAdjust->adjustNetValueByOrder(
-                    (float)$oneItem->getFieldData('OXNETPRICE'),
-                    $order,
-                ),
-                $this->orderArticlePriceAdjust->adjustVatValueByOrder(
-                    (float)$oneItem->getFieldData('OXVATPRICE'),
-                    $order,
-                ),
+                (float)$oneItem->getFieldData('OXNETPRICE'),
+                (float)$oneItem->getFieldData('OXVATPRICE'),
             );
         }
 
