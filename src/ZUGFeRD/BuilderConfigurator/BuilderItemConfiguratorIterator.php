@@ -31,7 +31,6 @@ class BuilderItemConfiguratorIterator implements BuilderConfiguratorInterface
         foreach ($orderArticles as $orderArticle) {
             $builder = $this->builderItemConfigurator->configureOneItem(
                 builder: $builder,
-                invoiceData: $invoiceData,
                 position: ++$position,
                 orderArticle: $orderArticle,
             );

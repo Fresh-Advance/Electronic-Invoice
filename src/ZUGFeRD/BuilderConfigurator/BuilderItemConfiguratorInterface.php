@@ -15,7 +15,6 @@ interface BuilderItemConfiguratorInterface
 {
     public function configureOneItem(
         ZugferdDocumentBuilder $builder,
-        InvoiceDataInterface $invoiceData,
         int $position,
         OrderArticleExtension $orderArticle,
     ): ZugferdDocumentBuilder;

@@ -42,18 +42,14 @@ class BuilderItemConfiguratorIteratorTest extends TestCase
             ->method('configureOneItem')
             ->willReturnCallback(function (
                 ZugferdDocumentBuilder $builder,
-                InvoiceDataInterface $invoiceData,
                 int $position,
                 OrderArticleExtension $orderArticle
             ) use (
                 $counter,
                 $builderStub,
-                $invoiceDataStub,
                 $item1,
                 $item2
             ): ZugferdDocumentBuilder {
-                $this->assertSame($invoiceDataStub, $invoiceData);
-
                 switch ($counter->numberOfInvocations()) {
                     case 1:
                         $this->assertSame(1, $position);

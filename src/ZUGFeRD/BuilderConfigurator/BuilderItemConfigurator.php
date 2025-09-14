@@ -9,7 +9,6 @@ declare(strict_types=1);
 
 namespace FreshAdvance\ElectronicInvoice\ZUGFeRD\BuilderConfigurator;
 
-use FreshAdvance\Invoice\InvoiceData\DataType\InvoiceDataInterface;
 use FreshAdvance\Invoice\Pdf\Model\OrderArticleExtension;
 use horstoeko\zugferd\ZugferdDocumentBuilder;
 
@@ -17,14 +16,13 @@ class BuilderItemConfigurator implements BuilderItemConfiguratorInterface
 {
     public function configureOneItem(
         ZugferdDocumentBuilder $builder,
-        InvoiceDataInterface $invoiceData,
         int $position,
         OrderArticleExtension $orderArticle,
     ): ZugferdDocumentBuilder {
         $builder->addNewPosition((string)$position);
 
         $builder->setDocumentPositionProductDetails(
-            name: $orderArticle->faGetTranslatedTitle($invoiceData->getLanguageId()),
+            name: (string)$orderArticle->getFieldData('OXTITLE'),
             sellerAssignedID: (string)$orderArticle->getFieldData('OXARTNUM')
         );
 

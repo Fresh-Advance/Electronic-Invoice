@@ -25,21 +25,14 @@ class BuilderItemConfiguratorTest extends TestCase
     {
         $position = rand(1, 100);
 
-        $invoiceDataStub = $this->createConfiguredStub(InvoiceDataInterface::class, [
-            'getLanguageId' => $languageId = rand(0, 100),
-            'getOrder' => $orderStub = $this->createStub(Order::class),
-        ]);
-
         $orderArticleMock = $this->createMock(OrderArticleExtension::class);
-        $orderArticleMock->method('faGetTranslatedTitle')
-            ->with($languageId)
-            ->willReturn($title = uniqid());
         $orderArticleMock->method('getFieldData')
             ->willReturnMap([
                 ['OXARTNUM', $artNum = uniqid()],
                 ['OXNPRICE', (string)$oneNet = rand(10, 100)], // one net
                 ['OXNETPRICE', (string)$totalNet = rand(100, 200)], // total net
                 ['OXAMOUNT', (string)$amount = rand(1, 10)],
+                ['OXTITLE', (string)$title = uniqid()],
             ]);
 
         $builderSpy = $this->createMock(ZugferdDocumentBuilder::class);
@@ -66,7 +59,7 @@ class BuilderItemConfiguratorTest extends TestCase
 
         $sut = $this->getSut();
 
-        $result = $sut->configureOneItem($builderSpy, $invoiceDataStub, $position, $orderArticleMock);
+        $result = $sut->configureOneItem($builderSpy, $position, $orderArticleMock);
 
         $this->assertSame($builderSpy, $result);
     }
@@ -90,10 +83,6 @@ class BuilderItemConfiguratorTest extends TestCase
     {
         $position = rand(1, 100);
 
-        $invoiceDataStub = $this->createConfiguredStub(InvoiceDataInterface::class, [
-            'getOrder' => $this->createStub(Order::class),
-        ]);
-
         $orderArticleMock = $this->createMock(OrderArticleExtension::class);
         $orderArticleMock->method('getFieldData')
             ->willReturnMap([
@@ -108,7 +97,7 @@ class BuilderItemConfiguratorTest extends TestCase
 
         $sut = $this->getSut();
 
-        $sut->configureOneItem($builderSpy, $invoiceDataStub, $position, $orderArticleMock);
+        $sut->configureOneItem($builderSpy, $position, $orderArticleMock);
     }
 
     public function getSut(): BuilderItemConfigurator
