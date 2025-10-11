@@ -5,6 +5,7 @@
  * See LICENSE file for license details.
  */
 
+use FreshAdvance\ElectronicInvoice\Company\Settings\CompanySettings;
 use FreshAdvance\ElectronicInvoice\Geo\Settings\GeoSettings;
 
 $sMetadataVersion = '2.1';
@@ -29,6 +30,12 @@ $aModule = [
             'name' => GeoSettings::SETTING_SHOP_COUNTRY_ISO2,
             'type' => 'str',
             'value' => 'DE', // Default to Germany
+        ],
+        [
+            'group' => 'fa_electronic_invoice_company',
+            'name' => CompanySettings::SETTING_REGISTRY_NOTE,
+            'type' => 'arr',
+            'value' => [], // Default to empty array
         ],
     ]
 ];

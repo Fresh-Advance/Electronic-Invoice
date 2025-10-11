@@ -1,0 +1,7 @@
+services:
+  _defaults:
+    public: false
+    autowire: true
+
+  FreshAdvance\ElectronicInvoice\Company\Settings\CompanySettingsInterface:
+    class: FreshAdvance\ElectronicInvoice\Company\Settings\CompanySettings

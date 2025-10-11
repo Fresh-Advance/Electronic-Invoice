@@ -4,10 +4,14 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
-## [v1.0.0] - Unreleased
+## [v1.0.0-rc.7] - 2025-10-12
+
+### Added
+- New setting - Company registry information for adding more company information in the Note field of the invoice
 
 ### Changed
 - Do not translate item titles anymore, it should be taken from the OrderArticle directly.
+- Set invoice date as delivery date (this may get more configuration options in the future)
 
 ## [v1.0.0-rc.6] - 2025-08-05
 
