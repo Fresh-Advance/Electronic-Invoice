@@ -46,6 +46,8 @@ class BuilderDocumentInformationConfigurator implements BuilderConfiguratorInter
 
         $builder->setDocumentBusinessProcess(self::PROCESS_ID);
 
+        $builder->setDocumentSupplyChainEvent($documentDate);
+
         return $builder;
     }
 }

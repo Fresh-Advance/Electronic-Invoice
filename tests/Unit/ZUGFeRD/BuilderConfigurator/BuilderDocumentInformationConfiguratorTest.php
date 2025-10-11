@@ -54,18 +54,22 @@ class BuilderDocumentInformationConfiguratorTest extends TestCase
             ->with($numberFormat, $invoiceDataStub)
             ->willReturn($formattedNumber = uniqid());
 
+        $dateTime = \DateTime::createFromFormat($dateFormat, $date);
+
         $builderSpy = $this->createMock(ZugferdDocumentBuilder::class);
         $builderSpy->expects($this->once())
             ->method('setDocumentInformation')
             ->with(
                 $formattedNumber,
                 ZugferdInvoiceType::INVOICE,
-                $this->callback(function ($dateTime) use ($dateFormat, $date) {
-                    return $dateTime instanceof \DateTime &&
-                        $dateTime->format($dateFormat) === $date;
-                }),
+                $this->equalToWithDelta($dateTime, 1),
                 $currencyName
             )
+            ->willReturn($builderSpy);
+
+        $builderSpy->expects($this->once())
+            ->method('setDocumentSupplyChainEvent')
+            ->with($this->equalToWithDelta($dateTime, 1))
             ->willReturn($builderSpy);
 
         $builderSpy->expects($this->once())
