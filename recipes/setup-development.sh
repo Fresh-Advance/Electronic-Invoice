@@ -41,14 +41,11 @@ $SCRIPT_PATH/parts/shared/require_shop_edition_packages.sh -e"${edition}" -v"dev
 $SCRIPT_PATH/parts/shared/require_twig_components.sh -e"${edition}" -b"b-7.1.x"
 $SCRIPT_PATH/parts/shared/require_theme_dev.sh -t"twig" -b"b-7.1.x"
 $SCRIPT_PATH/parts/shared/require_demodata_package.sh -e"${edition}" -b"b-7.1.x"
+$SCRIPT_PATH/parts/shared/require.sh -n"fresh-advance/oxid-per-line-vat" -v"dev-b-7.1.x"
 
 make up
 
 docker compose exec php composer update --no-interaction
-
-perl -pi\
-  -e 'print "SetEnvIf Authorization \"(.*)\" HTTP_AUTHORIZATION=\$1\n\n" if $. == 1'\
-  source/source/.htaccess
 
 $SCRIPT_PATH/parts/shared/setup_database.sh --no-demodata
 
@@ -56,6 +53,7 @@ docker compose exec -T php vendor/bin/oe-console oe:module:install ./
 docker compose exec -T php vendor/bin/oe-eshop-doctrine_migration migrations:migrate
 docker compose exec -T php vendor/bin/oe-eshop-db_views_generate
 
+docker compose exec -T php vendor/bin/oe-console oe:module:activate fa_perlinevat
 docker compose exec -T php vendor/bin/oe-console oe:module:activate fa_invoice
 docker compose exec -T php vendor/bin/oe-console oe:module:activate fa_electronic_invoice
 docker compose exec -T php vendor/bin/oe-console oe:theme:activate twig

@@ -14,7 +14,9 @@
 
 ## Limitations
 
-* The module currently works with shops configured for NET prices only because of rounding issues in shop during Net prices calculation from Brutto prices.
+* The invoice will be valid only if your Net and VAT totals are correct (item lines should sum up to correct totals)
+  * The default shop functionality may lead to not matching totals in some cases.
+  * The module which changes how the total VAT is calculated might help - https://github.com/Fresh-Advance/OXID-Per-Line-VAT
 * Tested with:
   * Shop 7.1 - PHP 8.1, 8.2, MySQL 5.7 and 8.0
   * Shop 7.2 - PHP 8.2, 8.3, MySQL 5.7 and 8.0
