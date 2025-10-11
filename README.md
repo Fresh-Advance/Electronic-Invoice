@@ -12,11 +12,25 @@
 
 * Extends the PDF Invoice module to generate ZUGFeRD compliant PDF invoices
 
+## Requirements
+
+Please read this section carefully before using the module. Everything here is very important to make the invoice valid.
+
+* Seller information is taken from the shop information settings (**Master Settings -> Core Settings**) and should be filled in correctly
+    * Company Name
+    * **Tax number (Valid Tax ID)**
+    * **VAT number (Valid Sales Tax ID)**
+    * Company address (Street, City, ZIP).
+    * Responsible person information (Name, Surnname, Phone, Fax, Email - info email in settings)
+    * Email (info email in settings)
+* **The country ISO2 code should be configured in the Electronic Invoice module settings**
+* The invoice will be valid only if your Net and VAT totals are correct (item lines should sum up to correct totals)
+    * The default shop functionality may lead to not matching totals in some cases.
+    * The module which changes how the total VAT is calculated might help - https://github.com/Fresh-Advance/OXID-Per-Line-VAT
+
+
 ## Limitations
 
-* The invoice will be valid only if your Net and VAT totals are correct (item lines should sum up to correct totals)
-  * The default shop functionality may lead to not matching totals in some cases.
-  * The module which changes how the total VAT is calculated might help - https://github.com/Fresh-Advance/OXID-Per-Line-VAT
 * Tested with:
   * Shop 7.1 - PHP 8.1, 8.2, MySQL 5.7 and 8.0
   * Shop 7.2 - PHP 8.2, 8.3, MySQL 5.7 and 8.0
