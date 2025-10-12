@@ -24,7 +24,9 @@ class BuilderDocumentNoteConfigurator implements BuilderConfiguratorInterface
         ZugferdDocumentBuilder $builder,
         InvoiceDataInterface $invoiceData
     ): ZugferdDocumentBuilder {
-        $builder->addDocumentNote($this->companySettings->getRegistryNote(), null, 'REG');
+        if ($note = $this->companySettings->getRegistryNote()) {
+            $builder->addDocumentNote($note, null, 'REG');
+        }
 
         return $builder;
     }

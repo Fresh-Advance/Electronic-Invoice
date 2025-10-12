@@ -40,4 +40,25 @@ class BuilderDocumentNoteConfiguratorTest extends TestCase
         $result = $sut->configureBuilder($builderSpy, $invoiceDataStub);
         $this->assertSame($builderSpy, $result);
     }
+
+    #[Test]
+    public function builderNotConfiguredWithDocumentInformationIfSettingValueIsEmpty(): void
+    {
+        $invoiceDataStub = $this->createStub(InvoiceDataInterface::class);
+        $builderSpy = $this->createMock(ZugferdDocumentBuilder::class);
+
+        $companySettingsStub = $this->createConfiguredStub(CompanySettingsInterface::class, [
+            'getRegistryNote' => '',
+        ]);
+
+        $builderSpy->expects($this->never())
+            ->method('addDocumentNote');
+
+        $sut = new BuilderDocumentNoteConfigurator(
+            companySettings: $companySettingsStub
+        );
+
+        $result = $sut->configureBuilder($builderSpy, $invoiceDataStub);
+        $this->assertSame($builderSpy, $result);
+    }
 }
