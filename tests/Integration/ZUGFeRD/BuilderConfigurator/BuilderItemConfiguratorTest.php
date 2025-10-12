@@ -10,10 +10,9 @@ declare(strict_types=1);
 namespace FreshAdvance\ElectronicInvoice\Tests\Integration\ZUGFeRD\BuilderConfigurator;
 
 use FreshAdvance\ElectronicInvoice\ZUGFeRD\BuilderConfigurator\BuilderItemConfigurator;
-use FreshAdvance\Invoice\InvoiceData\DataType\InvoiceDataInterface;
 use FreshAdvance\Invoice\Pdf\Model\OrderArticleExtension;
 use horstoeko\zugferd\ZugferdDocumentBuilder;
-use OxidEsales\Eshop\Application\Model\Order;
+use OxidEsales\Eshop\Application\Model\OrderArticle;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
@@ -25,7 +24,7 @@ class BuilderItemConfiguratorTest extends TestCase
     {
         $position = rand(1, 100);
 
-        $orderArticleMock = $this->createMock(OrderArticleExtension::class);
+        $orderArticleMock = $this->createMock(OrderArticle::class);
         $orderArticleMock->method('getFieldData')
             ->willReturnMap([
                 ['OXARTNUM', $artNum = uniqid()],
@@ -83,7 +82,7 @@ class BuilderItemConfiguratorTest extends TestCase
     {
         $position = rand(1, 100);
 
-        $orderArticleMock = $this->createMock(OrderArticleExtension::class);
+        $orderArticleMock = $this->createMock(OrderArticle::class);
         $orderArticleMock->method('getFieldData')
             ->willReturnMap([
                 ['OXVAT', $vat], // VAT percentage

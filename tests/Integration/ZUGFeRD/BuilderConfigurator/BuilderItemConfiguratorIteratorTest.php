@@ -12,9 +12,9 @@ namespace FreshAdvance\ElectronicInvoice\Tests\Integration\ZUGFeRD\BuilderConfig
 use FreshAdvance\ElectronicInvoice\ZUGFeRD\BuilderConfigurator\BuilderItemConfiguratorInterface;
 use FreshAdvance\ElectronicInvoice\ZUGFeRD\BuilderConfigurator\BuilderItemConfiguratorIterator;
 use FreshAdvance\Invoice\InvoiceData\DataType\InvoiceDataInterface;
-use FreshAdvance\Invoice\Pdf\Model\OrderArticleExtension;
 use horstoeko\zugferd\ZugferdDocumentBuilder;
 use OxidEsales\Eshop\Application\Model\Order;
+use OxidEsales\Eshop\Application\Model\OrderArticle;
 use OxidEsales\Eshop\Application\Model\OrderArticleList;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
@@ -28,8 +28,8 @@ class BuilderItemConfiguratorIteratorTest extends TestCase
             'getOrder' => $this->createConfiguredStub(Order::class, [
                 'getOrderArticles' => $this->createConfiguredStub(OrderArticleList::class, [
                     'getArray' => [
-                        "10" => $item1 = $this->createStub(OrderArticleExtension::class),
-                        "20" => $item2 = $this->createStub(OrderArticleExtension::class),
+                        "10" => $item1 = $this->createStub(OrderArticle::class),
+                        "20" => $item2 = $this->createStub(OrderArticle::class),
                     ]
                 ]),
             ]),
@@ -43,7 +43,7 @@ class BuilderItemConfiguratorIteratorTest extends TestCase
             ->willReturnCallback(function (
                 ZugferdDocumentBuilder $builder,
                 int $position,
-                OrderArticleExtension $orderArticle
+                OrderArticle $orderArticle
             ) use (
                 $counter,
                 $builderStub,

@@ -10,8 +10,8 @@ declare(strict_types=1);
 namespace FreshAdvance\ElectronicInvoice\ZUGFeRD\BuilderConfigurator;
 
 use FreshAdvance\Invoice\InvoiceData\DataType\InvoiceDataInterface;
-use FreshAdvance\Invoice\Pdf\Model\OrderArticleExtension;
 use horstoeko\zugferd\ZugferdDocumentBuilder;
+use OxidEsales\Eshop\Application\Model\OrderArticle;
 
 class BuilderItemConfiguratorIterator implements BuilderConfiguratorInterface
 {
@@ -27,7 +27,7 @@ class BuilderItemConfiguratorIterator implements BuilderConfiguratorInterface
         $orderArticles = $invoiceData->getOrder()->getOrderArticles()->getArray();
 
         $position = 0;
-        /** @var OrderArticleExtension $orderArticle */
+        /** @var OrderArticle $orderArticle */
         foreach ($orderArticles as $orderArticle) {
             $builder = $this->builderItemConfigurator->configureOneItem(
                 builder: $builder,

@@ -7,15 +7,14 @@
 
 namespace FreshAdvance\ElectronicInvoice\ZUGFeRD\BuilderConfigurator;
 
-use FreshAdvance\Invoice\InvoiceData\DataType\InvoiceDataInterface;
-use FreshAdvance\Invoice\Pdf\Model\OrderArticleExtension;
 use horstoeko\zugferd\ZugferdDocumentBuilder;
+use OxidEsales\Eshop\Application\Model\OrderArticle;
 
 interface BuilderItemConfiguratorInterface
 {
     public function configureOneItem(
         ZugferdDocumentBuilder $builder,
         int $position,
-        OrderArticleExtension $orderArticle,
+        OrderArticle $orderArticle,
     ): ZugferdDocumentBuilder;
 }

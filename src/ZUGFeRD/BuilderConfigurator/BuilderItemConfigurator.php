@@ -9,15 +9,15 @@ declare(strict_types=1);
 
 namespace FreshAdvance\ElectronicInvoice\ZUGFeRD\BuilderConfigurator;
 
-use FreshAdvance\Invoice\Pdf\Model\OrderArticleExtension;
 use horstoeko\zugferd\ZugferdDocumentBuilder;
+use OxidEsales\Eshop\Application\Model\OrderArticle;
 
 class BuilderItemConfigurator implements BuilderItemConfiguratorInterface
 {
     public function configureOneItem(
         ZugferdDocumentBuilder $builder,
         int $position,
-        OrderArticleExtension $orderArticle,
+        OrderArticle $orderArticle,
     ): ZugferdDocumentBuilder {
         $builder->addNewPosition((string)$position);
 
