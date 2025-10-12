@@ -44,6 +44,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ### Added
 - ZUGFeRD EN-16931 format support
 
+[v1.0.0-rc.7]: https://github.com/Fresh-Advance/Electronic-Invoice/compare/v1.0.0-rc.6...v1.0.0-rc.7
 [v1.0.0-rc.6]: https://github.com/Fresh-Advance/Electronic-Invoice/compare/v1.0.0-rc.5...v1.0.0-rc.6
 [v1.0.0-rc.5]: https://github.com/Fresh-Advance/Electronic-Invoice/compare/v1.0.0-rc.4...v1.0.0-rc.5
 [v1.0.0-rc.4]: https://github.com/Fresh-Advance/Electronic-Invoice/compare/v1.0.0-rc.3...v1.0.0-rc.4
