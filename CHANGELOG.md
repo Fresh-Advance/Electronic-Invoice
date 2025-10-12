@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [v1.0.0] - 2025-10-12
+
+First stable release. Changes from v1.0.0-rc.1 to v1.0.0-rc.7 are included in this release.
+
 ## [v1.0.0-rc.7] - 2025-10-12
 
 ### Added
@@ -44,6 +48,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ### Added
 - ZUGFeRD EN-16931 format support
 
+[v1.0.0]: https://github.com/Fresh-Advance/Electronic-Invoice/compare/9e7f4664f4c...v1.0.0
 [v1.0.0-rc.7]: https://github.com/Fresh-Advance/Electronic-Invoice/compare/v1.0.0-rc.6...v1.0.0-rc.7
 [v1.0.0-rc.6]: https://github.com/Fresh-Advance/Electronic-Invoice/compare/v1.0.0-rc.5...v1.0.0-rc.6
 [v1.0.0-rc.5]: https://github.com/Fresh-Advance/Electronic-Invoice/compare/v1.0.0-rc.4...v1.0.0-rc.5
