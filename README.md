@@ -10,12 +10,17 @@
 
 ## Features
 
-* Extends the PDF Invoice module to generate ZUGFeRD compliant PDF invoices
+* Extends the [PDF Invoice module](https://github.com/Fresh-Advance/Invoice) to generate ZUGFeRD compliant PDF invoices
+
+<img width="500" height="344" alt="image" src="https://github.com/user-attachments/assets/1867d8a5-a7ad-4b0d-a7c5-2ec2c176fb5c" />
+<img width="351" height="351" alt="image" src="https://github.com/user-attachments/assets/62c355f2-7817-43ce-9cca-335e4b08731f" />
+
 
 ## Requirements
 
 Please read this section carefully before using the module. Everything here is very important to make the invoice valid.
 
+* The [PDF Invoice Module](https://github.com/Fresh-Advance/Invoice) is required to be installed and active
 * Seller information is taken from the shop information settings (**Master Settings -> Core Settings**) and should be filled in correctly
     * Company Name
     * **Tax number (Valid Tax ID)**
@@ -27,7 +32,6 @@ Please read this section carefully before using the module. Everything here is v
 * The invoice will be valid only if your Net and VAT totals are correct (item lines should sum up to correct totals)
     * The default shop functionality may lead to not matching totals in some cases.
     * The module which changes how the total VAT is calculated might help - https://github.com/Fresh-Advance/OXID-Per-Line-VAT
-
 
 ## Limitations
 
