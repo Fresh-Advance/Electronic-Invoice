@@ -4,6 +4,11 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [v1.0.2] - 2025-12-07
+
+### Fixed
+- Fix the official website url and email
+
 ## [v1.0.1] - 2025-10-12
 
 ### Fixed
@@ -53,6 +58,7 @@ First stable release. Changes from v1.0.0-rc.1 to v1.0.0-rc.7 are included in th
 ### Added
 - ZUGFeRD EN-16931 format support
 
+[v1.0.2]: https://github.com/Fresh-Advance/Electronic-Invoice/compare/v1.0.1...v1.0.2
 [v1.0.1]: https://github.com/Fresh-Advance/Electronic-Invoice/compare/v1.0.0...v1.0.1
 [v1.0.0]: https://github.com/Fresh-Advance/Electronic-Invoice/compare/9e7f4664f4c...v1.0.0
 [v1.0.0-rc.7]: https://github.com/Fresh-Advance/Electronic-Invoice/compare/v1.0.0-rc.6...v1.0.0-rc.7

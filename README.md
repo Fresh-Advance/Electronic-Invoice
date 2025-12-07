@@ -12,7 +12,7 @@
 
 * Extends the [PDF Invoice module](https://github.com/Fresh-Advance/Invoice) to generate ZUGFeRD compliant PDF invoices
 
-<img width="500" height="344" alt="image" src="https://github.com/user-attachments/assets/1867d8a5-a7ad-4b0d-a7c5-2ec2c176fb5c" />
+<img width="470" height="344" alt="image" src="https://github.com/user-attachments/assets/1867d8a5-a7ad-4b0d-a7c5-2ec2c176fb5c" />
 <img width="351" height="351" alt="image" src="https://github.com/user-attachments/assets/62c355f2-7817-43ce-9cca-335e4b08731f" />
 
 
@@ -110,4 +110,4 @@ docker compose exec -T php composer tests-coverage
 ## License
 
 Please make sure you checked the License before using the module. License
-subscription can be bought on [MB Arbatos Klubas website](https://arbatosklubas.eu/)
+subscription can be bought on [Fresh Advance website](https://freshadvance.eu/)
