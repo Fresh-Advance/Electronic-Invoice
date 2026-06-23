@@ -32,12 +32,12 @@
         "codeception/module-db": "^3.0",
         "codeception/module-filesystem": "^3.0",
         "codeception/module-webdriver": "^4.0",
-        "oxid-esales/codeception-modules": "dev-b-7.2.x",
-        "oxid-esales/codeception-page-objects": "dev-b-7.2.x",
-        "oxid-esales/developer-tools": "dev-b-7.2.x"
+        "oxid-esales/codeception-modules": "dev-b-7.3.x",
+        "oxid-esales/codeception-page-objects": "dev-b-7.3.x",
+        "oxid-esales/developer-tools": "dev-b-7.3.x"
     },
     "conflict": {
-        "oxid-esales/oxideshop-ce": "<7.2"
+        "oxid-esales/oxideshop-ce": "<7.3"
     },
     "autoload": {
         "psr-4": {
